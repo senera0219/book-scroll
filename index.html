@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f4efe4" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#1d1a17" media="(prefers-color-scheme: dark)">
+  <meta name="description" content="스크롤하면 책 카드가 나오는 독서 앱">
+  <title>책 스크롤</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="assets/icons/icon-192.png">
+  <link rel="apple-touch-icon" href="assets/icons/icon-192.png">
+  <link rel="stylesheet" href="app/styles/base.css">
+  <link rel="stylesheet" href="app/styles/feed.css">
+</head>
+<body>
+  <header class="topbar">
+    <nav class="tabs" id="tabs" aria-label="주제"></nav>
+  </header>
+  <main class="feed" id="feed" aria-live="polite">
+    <p class="feed-message">불러오는 중…</p>
+  </main>
+  <script type="module" src="app/js/main.js"></script>
+</body>
+</html>

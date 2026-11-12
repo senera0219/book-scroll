@@ -1,0 +1,177 @@
+/* 상단 탭, 세로 피드(책), 가로 카드, 해설 카드 */
+
+/* ---- 상단 탭 ---- */
+.topbar {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 10;
+  height: calc(var(--topbar-h) + env(safe-area-inset-top));
+  padding-top: env(safe-area-inset-top);
+  background: var(--bar);
+  border-bottom: 1px solid var(--rule);
+}
+
+.tabs {
+  display: flex;
+  gap: 0.25rem;
+  height: var(--topbar-h);
+  padding: 0 0.75rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+  align-items: center;
+}
+.tabs::-webkit-scrollbar { display: none; }
+
+.tab {
+  flex: 0 0 auto;
+  border: 0;
+  background: none;
+  padding: 0.5rem 0.6rem;
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+}
+.tab[aria-selected="true"] {
+  color: var(--ink);
+  font-weight: 700;
+  border-bottom-color: var(--accent);
+}
+
+/* ---- 세로 피드: 한 화면 = 책 한 권 ---- */
+.feed {
+  height: 100dvh;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scroll-snap-type: y mandatory;
+  scrollbar-width: none;
+}
+.feed::-webkit-scrollbar { display: none; }
+
+.feed-message {
+  height: 100dvh;
+  display: grid;
+  place-items: center;
+  margin: 0;
+  padding: 0 1.5rem;
+  text-align: center;
+  color: var(--ink-soft);
+  font-family: var(--serif);
+}
+
+.book {
+  height: 100dvh;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  position: relative;
+}
+
+/* ---- 가로 카드: 같은 책의 다음 내용 ---- */
+.cards {
+  display: flex;
+  height: 100%;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+.cards::-webkit-scrollbar { display: none; }
+
+.card {
+  flex: 0 0 100%;
+  height: 100%;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  display: flex;
+  flex-direction: column;
+  padding: calc(var(--topbar-h) + env(safe-area-inset-top) + 1.5rem) 1.75rem
+           calc(2.5rem + env(safe-area-inset-bottom));
+  overflow-y: auto;
+}
+
+.card-head {
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  letter-spacing: 0.02em;
+}
+.card-head .title { font-weight: 700; color: var(--ink); }
+
+.card-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 34rem;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.card-text {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: var(--text-size);
+  line-height: 1.85;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+.card[data-type="quote"] .card-text { font-size: calc(var(--text-size) * 1.08); }
+
+.card-note {
+  margin: 1.75rem 0 0;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--rule);
+  font-family: var(--serif);
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: var(--ink-soft);
+  word-break: keep-all;
+}
+
+.card-foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+}
+.hint { animation: nudge 1.6s ease-in-out 3; }
+@keyframes nudge {
+  50% { transform: translateX(6px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hint { animation: none; }
+}
+
+/* ---- 해설 카드 ---- */
+.commentary h2 {
+  margin: 0 0 0.5rem;
+  font-size: 0.9rem;
+  color: var(--accent);
+}
+.commentary p {
+  margin: 0 0 1.5rem;
+  font-family: var(--serif);
+  font-size: 1rem;
+  line-height: 1.8;
+  word-break: keep-all;
+}
+.links {
+  display: flex;
+  gap: 0.75rem;
+  margin: 0.5rem 0 1.5rem;
+}
+.links a {
+  flex: 1;
+  text-align: center;
+  padding: 0.8rem 0.5rem;
+  border: 1px solid var(--rule);
+  border-radius: 0.5rem;
+  text-decoration: none;
+  color: var(--ink);
+  font-weight: 600;
+}
+.source {
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+  line-height: 1.6;
+}

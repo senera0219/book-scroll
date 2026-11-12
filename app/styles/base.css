@@ -1,0 +1,47 @@
+/* 종이책 테마: 색·글꼴·기본 여백. 글꼴 파일은 넣지 않고 기기 명조를 쓴다(D-12). */
+:root {
+  --paper: #f4efe4;
+  --ink: #2b2622;
+  --ink-soft: #6b625a;
+  --rule: #d9d0c1;
+  --accent: #8a5a2b;
+  --bar: rgba(244, 239, 228, 0.92);
+
+  --serif: "Noto Serif KR", "Noto Serif CJK KR", "Source Han Serif K", "Nanum Myeongjo", "Batang", serif;
+  --sans: system-ui, -apple-system, "Noto Sans KR", "Malgun Gothic", sans-serif;
+
+  --text-size: 1.25rem;
+  --topbar-h: 3rem;
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #1d1a17;
+    --ink: #ddd5c8;
+    --ink-soft: #9a9084;
+    --rule: #3a342e;
+    --accent: #d1a273;
+    --bar: rgba(29, 26, 23, 0.92);
+  }
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+a { color: var(--accent); }
+
+button {
+  font: inherit;
+  color: inherit;
+}

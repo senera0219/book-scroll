@@ -91,6 +91,10 @@ book-scroll/
 │  ├─ sources/             # 원문 텍스트 (퍼블릭 도메인)
 │  └─ reports/             # 검수 기록
 ├─ assets/                 # 아이콘, 글꼴
+├─ scripts/                # 내 컴퓨터용 도구 (앱에는 쓰이지 않음)
+│  ├─ verify.mjs           # 전체 검사 (+ verify.test.mjs)
+│  ├─ serve.mjs            # 미리 보기 서버 (--drafts: 검수 전 카드로)
+│  └─ make-icons.mjs       # 아이콘 PNG 생성
 ├─ docs/
 │  ├─ card-guide.md        # 카드 제작 가이드 (공개)
 │  ├─ ARCHITECTURE.md      # 이 문서 (공개)
