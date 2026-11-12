@@ -141,6 +141,15 @@ book-scroll/
 - `unit`: `bundle`(짧은 묶음) 또는 `chapter`(챕터). 형식과 범위는 시험 제작 뒤에 정한다.
 - `lang`: 다국어 확장을 위해 처음부터 둔다.
 
+책 목록 `content/index.json`:
+
+```json
+{ "books": [ { "id": "meditations", "title": "명상록", "tab": "philosophy", "file": "books/meditations.json" } ] }
+```
+
+- `id`·`title`·`tab`은 책 파일과 같아야 하고, `file`은 `books/<id>.json`.
+- 이 절의 형식과 `docs/card-guide.md`의 규칙은 `node scripts/verify.mjs`가 검사한다.
+
 ## 5. 기록 데이터 (휴대폰 안)
 
 ```json

@@ -40,7 +40,8 @@
 `/onboard`: `docs/STATUS.md` §1 → `docs/TASKS.md`에서 `#n`을 잡아 `## 진행중`에. 끝나면 `/wrap`.
 
 ## 4. 검증 명령
-- 전체 검사: **아직 없음.** 카드·PWA 검사 도구는 `#4`에서 만든다(`node scripts/verify.mjs` 예정). 그 전까지는 "검증 명령 없음"으로 보고하고 통과로 세지 않는다.
+- 전체 검사: `node scripts/verify.mjs` — 카드 JSON·PWA 파일·§6 규칙. exit 0이면 통과. "건너뜀" 줄은 검사 안 한 것이니 통과로 세지 않는다.
+- 검사 도구 시험: `node --test scripts/` (검사 도구를 고쳤을 때)
 - 화면 확인: Live Server로 열어 직접 확인 → 확인한 것과 못 한 것을 나눠 보고.
 - 가드 자가 시험: `/harness-check`
 
