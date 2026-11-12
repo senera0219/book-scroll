@@ -37,7 +37,7 @@
 ```
 출처: <원문 페이지 주소>
 받은 날짜: YYYY-MM-DD
-판본: <예: Project Gutenberg #2680 영역본 — 번역자 이름까지>
+판본: <예: George Long 영역본 (Project Gutenberg #15877) — 번역자 이름까지>
 ```
 
 ## 4. 카드 형식 (`type`)
@@ -103,8 +103,8 @@
 
 | 카드 id | 원문 위치 | 판정 | 지적 |
 |---|---|---|---|
-| meditations-01 | 1권 15절 | 통과 | — |
-| meditations-02 | 2권 1절 | 수정 | "언제나"는 원문에 없음 → 삭제 |
+| meditations-01 | 2권 1절 | 통과 | — |
+| meditations-02 | 2권 4절 | 수정 | "언제나"는 원문에 없음 → 삭제 |
 
 ## 해설 카드
 - about: 통과 / 근거: …
@@ -146,20 +146,20 @@
 
 ## 10. 예시
 
-**좋은 예 — `quote` (명상록, Project Gutenberg #2680 영역본 1권 15절에서 번역)**
+**좋은 예 — `quote` (명상록, George Long 영역본(Gutenberg #15877) 2권 1절에서 번역)**
 
-원문(영역본): "Betimes in the morning say to thyself, This day I shalt have to do with an idle curious man, with an unthankful man, a railer, a crafty, false, or an envious man; an unsociable uncharitable man. All these ill qualities have happened unto them, through ignorance of that which is truly good and truly bad."
+원문(영역본): "Begin the morning by saying to thyself, I shall meet with the busybody, the ungrateful, arrogant, deceitful, envious, unsocial. All these things happen to them by reason of their ignorance of what is good and evil."
 
 ```json
 {
   "id": "meditations-01",
   "type": "quote",
-  "text": "아침 일찍 스스로에게 말하라. 오늘 나는 참견하기 좋아하는 사람, 고마워할 줄 모르는 사람, 헐뜯는 사람, 교활하고 거짓된 사람, 시기하는 사람, 어울릴 줄 모르고 인정 없는 사람을 상대하게 될 것이다.",
-  "note": "하루를 시작하기 전에 마주칠 사람들을 미리 떠올려 둔다. 바로 이어서 그는 이런 나쁜 성질이 무엇이 참으로 좋고 나쁜지 모르는 데서 생겼다고 말한다."
+  "text": "아침을 시작하며 스스로에게 말하라. 오늘 나는 참견하기 좋아하는 사람, 고마워할 줄 모르는 사람, 오만한 사람, 남을 속이는 사람, 시기하는 사람, 어울릴 줄 모르는 사람을 만날 것이다.",
+  "note": "하루를 시작하기 전에 마주칠 사람들을 미리 떠올려 둔다. 바로 이어서 그는 그들이 그렇게 행동하는 것은 무엇이 선이고 무엇이 악인지 모르기 때문이라고 말한다."
 }
 ```
 
-`text`는 113자, `note`는 83자로 기준 안이다. 한 문장이 기준을 넘으면 끊지 말고 한 카드로 두되, 검수 기록의 "지적"에 예외라고 적는다. `note`에는 원문 밖 사실(예: "로마 황제가 쓴 메모")을 넣지 않았다. 그런 내용은 해설 카드에 쓴다.
+`text`는 104자, `note`는 88자로 기준 안이다. 한 문장이 기준을 넘으면 끊지 말고 한 카드로 두되, 검수 기록의 "지적"에 예외라고 적는다. `note`에는 원문 밖 사실(예: "로마 황제가 쓴 메모")을 넣지 않았다. 그런 내용은 해설 카드에 쓴다.
 
 **좋은 예 — `original` (운수 좋은 날 첫 문장, 위키문헌 https://ko.wikisource.org/wiki/운수_좋은_날)**
 
