@@ -9,7 +9,7 @@
 ## 목록
 - [x] #1 하네스 구축: 키트 L2 전역 + 프로젝트 core 설치, AGENTS.md·결정·할 일·현황 채우기 (2026-11-12, 9c037bd)
 - [x] #2 GitHub 공개 저장소 만들기 + 첫 커밋(PRD 제외 확인) (2026-11-12, 9c037bd)
-- [ ] #3 카드 제작 가이드 `docs/card-guide.md` 작성
+- [x] #3 카드 제작 가이드 `docs/card-guide.md` 작성 (2026-11-12, 9bf9a7a)
 - [ ] #4 검사 도구 `scripts/verify.mjs`: 카드 JSON 형식·출처·필수 항목, PWA 파일 존재 확인 → AGENTS.md §4·`.claude/harness.json` verify에 등록
 - [ ] #5 화면 + 『명상록』 1권: 탭, 세로·가로 스와이프, 종이책 화면, 해설 카드, PWA 설치
 - [ ] #6 GitHub Pages 켜기 → 안드로이드 홈 화면 설치 확인
