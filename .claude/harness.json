@@ -1,0 +1,9 @@
+{
+  "verify": null,
+  "protectedPaths": [
+    ".github/workflows/**",
+    ".claude/**",
+    ".gitignore",
+    "docs/PRD.md"
+  ]
+}
