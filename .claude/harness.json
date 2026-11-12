@@ -1,5 +1,5 @@
 {
-  "verify": null,
+  "verify": "node scripts/verify.mjs",
   "protectedPaths": [
     ".github/workflows/**",
     ".claude/**",
