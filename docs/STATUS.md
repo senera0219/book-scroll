@@ -2,10 +2,10 @@
 > 덮어쓰기 문서. 지금 상태만 6KB 이하로 쓴다(`wc -c docs/STATUS.md`). 지난 일은 `docs/buildlog/`에. `/wrap`이 갱신한다.
 
 ## 0. 한 줄
-기획(PRD)·설계(ARCHITECTURE)·하네스 구축 완료. 코드는 아직 없음. git 저장소도 아직 없음.
+기획(PRD)·설계·하네스 구축 완료, GitHub 공개 저장소에 첫 저장 완료. 앱 코드는 아직 없음.
 
 ## 1. 다음 첫 작업
-`#2` GitHub 공개 저장소 만들기. 시작 전 사용자에게 "시작할까요?" + 저장소 이름 확인. 만든 뒤 `git ls-files docs/PRD.md` 출력이 비어 있는지 확인.
+`#3` 카드 제작 가이드 `docs/card-guide.md` 작성(문서 작업이라 승인 불필요). 기준: `docs/ARCHITECTURE.md` §4 카드 형식.
 
 ## 2. ▶ 사용자 할 일
 - 없음. (2026-11-12 새 세션에서 `rm -rf ~/harness-test` 차단 확인 완료)
@@ -18,6 +18,7 @@
 ## 4. 어디에 뭐가 있나
 | 무엇 | 어디(경로·URL) | 상태 |
 |---|---|---|
+| 저장소 | https://github.com/senera0219/book-scroll | 공개, `main`. 커밋 이메일은 GitHub noreply(이 저장소만) |
 | 규약 | `AGENTS.md` | 유효 |
 | 기획 | `docs/PRD.md` | 로컬 전용, 커밋 금지 |
 | 설계 | `docs/ARCHITECTURE.md` | 확정 |
