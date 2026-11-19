@@ -5,7 +5,7 @@
 기획·설계·하네스, 저장소, 카드 가이드, 검사 도구, 첫 화면(탭·스와이프·해설 카드·PWA) 완료. 『명상록』 카드 5장+해설이 ChatGPT 검수 전부 통과(2026-11-19) → `content/`에 들어감. `verify.mjs` 통과(건너뜀 없음).
 
 ## 1. 다음 첫 작업
-`#5` 마무리: 브라우저 사람 확인(T-05 §4). `node scripts/serve.mjs` → http://localhost:5500 를 폭 360px로 열어 확인. 끝나면 #5 완료 → `#6` GitHub Pages(공개라 먼저 물어볼 것).
+`#5` 마무리: 브라우저 사람 확인(T-05 §4). `node scripts/serve.mjs` → http://localhost:5500 를 폭 360px로 열어 확인. Pages는 사용자 승인으로 켬(2026-11-19, `main` 루트): https://senera0219.github.io/book-scroll/ — 휴대폰에서 열기·홈 화면 설치·오프라인 확인 결과 받기(#5·#6 함께).
 
 ## 2. ▶ 사용자 할 일
 1. 미리 보기 화면을 직접 넘겨 보고 느낌 말해 주기(Claude가 서버를 켜 줌).
@@ -20,6 +20,7 @@
 | 무엇 | 어디(경로·URL) | 상태 |
 |---|---|---|
 | 저장소 | https://github.com/senera0219/book-scroll | 공개, `main`. 커밋 이메일은 GitHub noreply(이 저장소만) |
+| 앱 주소 | https://senera0219.github.io/book-scroll/ | GitHub Pages, `main` 푸시하면 1분쯤 뒤 갱신 |
 | 규약 | `AGENTS.md` | 유효 |
 | 기획 | `docs/PRD.md` | 로컬 전용, 커밋 금지 |
 | 설계 | `docs/ARCHITECTURE.md` | 확정 |

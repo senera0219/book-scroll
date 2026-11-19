@@ -12,7 +12,7 @@
 - [x] #2 GitHub 공개 저장소 만들기 + 첫 커밋(PRD 제외 확인) (2026-11-12, 9c037bd)
 - [x] #3 카드 제작 가이드 `docs/card-guide.md` 작성 (2026-11-12, 9bf9a7a)
 - [x] #4 검사 도구 `scripts/verify.mjs` + 시험 12개, AGENTS.md §4·`.claude/harness.json` 등록 (2026-11-12, 30bff42)
-- [ ] #6 GitHub Pages 켜기 → 안드로이드 홈 화면 설치 확인
+- [~] #6 GitHub Pages 켜기 → 안드로이드 홈 화면 설치 확인. 남은 것: 휴대폰에서 열기·설치·오프라인 사람 확인 (Pages 켬 2026-11-19, https://senera0219.github.io/book-scroll/)
 - [ ] #7 나머지 시험 4권 제작(촛불의 과학, 운수 좋은 날, 하루 24시간, 군주론)
 - [ ] #8 오늘 읽은 카드 수 + 스트릭
 - [ ] #9 오늘의 문장 알림(알림 서버 선택 Q-3 포함)
