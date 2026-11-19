@@ -53,5 +53,10 @@
       "library": "https://www.nl.go.kr/NL/contents/search.do?kwd=%EB%AA%85%EC%83%81%EB%A1%9D"
     }
   },
-  "dailyQuote": "자기 마음의 움직임을 살피지 않는 사람은 반드시 불행해진다."
+  "dailyQuote": "자기 마음의 움직임을 살피지 않는 사람은 반드시 불행해진다.",
+  "review": {
+    "generatedBy": "claude",
+    "reviewedBy": "chatgpt",
+    "date": "2026-11-19"
+  }
 }

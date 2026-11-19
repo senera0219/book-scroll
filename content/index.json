@@ -1,0 +1,5 @@
+{
+  "books": [
+    { "id": "meditations", "title": "명상록", "tab": "philosophy", "file": "books/meditations.json" }
+  ]
+}
