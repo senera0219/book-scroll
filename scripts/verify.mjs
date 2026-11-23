@@ -131,6 +131,7 @@ function checkBook(root, book, rel, fileId, listed, bookIds, allCardIds, err, wa
     if (!isStr(s.edition)) err(rel, 'source.edition 없음');
     if (!isHttps(s.url)) err(rel, 'source.url은 https:// 주소여야 함');
     if (!LICENSES.includes(s.license)) err(rel, `source.license는 ${LICENSES.join('·')}만 (지금 "${s.license}")`);
+    if (s.publisher !== undefined && !isStr(s.publisher)) err(rel, 'source.publisher는 글자여야 함 (예: "개벽사, 1924")');
   }
 
   // cards
@@ -155,6 +156,11 @@ function checkBook(root, book, rel, fileId, listed, bookIds, allCardIds, err, wa
         else if (len(c.note) > MAX_LEN.note) warn(where, `note ${len(c.note)}자 > ${MAX_LEN.note}자`);
       } else if (c.note !== undefined) {
         err(where, 'note는 type이 quote일 때만');
+      }
+      if (!isStr(c.loc)) err(where, 'loc(원문 위치) 없음 — 판본과 상관없는 위치, 예: "2권 1절"');
+      if (c.page !== undefined) {
+        if (!Number.isInteger(c.page) || c.page < 1) err(where, 'page는 1 이상의 정수(쪽 번호)');
+        if (!(s && isStr(s.publisher))) err(where, 'page는 source.publisher(출판사가 확실한 판본)가 있을 때만');
       }
     });
   }

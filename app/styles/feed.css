@@ -146,6 +146,14 @@
 }
 .card[data-type="quote"] .card-text { font-size: calc(var(--text-size) * 1.08); }
 
+.card-loc {
+  margin: 0.9rem 0 0;
+  text-align: right;
+  font-family: var(--serif);
+  font-size: calc(0.85rem * var(--text-scale));
+  color: var(--ink-soft);
+}
+
 .card-note {
   margin: 1.75rem 0 0;
   padding-top: 1.25rem;
@@ -231,6 +239,7 @@
 
   .card-body { max-width: 42rem; }
   .card-note { font-size: calc(1.2rem * var(--text-scale)); }
+  .card-loc { font-size: calc(1rem * var(--text-scale)); }
   .card-foot { font-size: 1rem; max-width: 42rem; width: 100%; margin: 0 auto; }
 
   .commentary h2 { font-size: 1.15rem; }

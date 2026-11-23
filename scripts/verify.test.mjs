@@ -22,8 +22,8 @@ function goodBook() {
     },
     unit: 'bundle',
     cards: [
-      { id: 'meditations-01', type: 'quote', text: '아침 일찍 스스로에게 말하라.', note: '해설.' },
-      { id: 'meditations-02', type: 'summary', text: '요약.' },
+      { id: 'meditations-01', type: 'quote', text: '아침 일찍 스스로에게 말하라.', note: '해설.', loc: '2권 1절' },
+      { id: 'meditations-02', type: 'summary', text: '요약.', loc: '2권 4절' },
     ],
     commentary: {
       about: '이 책은.',
@@ -161,4 +161,26 @@ test('PWA: index.html이 있으면 manifest·sw.js가 있어야 함', () => {
   const r = run({ 'index.html': '<p>hi</p>' });
   assert.ok(has(r.errors, 'manifest.webmanifest'));
   assert.ok(has(r.errors, 'sw.js'));
+});
+
+test('원문 위치(loc)가 없으면 실패', () => {
+  const book = goodBook();
+  delete book.cards[0].loc;
+  assert.ok(has(run(withBook(book)).errors, 'loc'));
+});
+
+test('쪽수(page)는 출판사가 있는 판본에서만, 정수만', () => {
+  const noPub = goodBook();
+  noPub.cards[0].page = 25;
+  assert.ok(has(run(withBook(noPub)).errors, 'source.publisher'));
+
+  const bad = goodBook();
+  bad.source.publisher = '개벽사, 1924';
+  bad.cards[0].page = '25쪽';
+  assert.ok(has(run(withBook(bad)).errors, '정수'));
+
+  const ok = goodBook();
+  ok.source.publisher = '개벽사, 1924';
+  ok.cards[0].page = 25;
+  assert.deepEqual(run(withBook(ok)).errors, []);
 });

@@ -118,7 +118,8 @@ book-scroll/
     "translatedFrom": "en",
     "edition": "George Long 영역본 (1862)",
     "url": "https://www.gutenberg.org/ebooks/...",
-    "license": "public-domain"
+    "license": "public-domain",
+    "publisher": "(선택) 출판사, 연도 — 쪽수를 쓸 때만"
   },
   "unit": "bundle",
   "cards": [
@@ -126,7 +127,9 @@ book-scroll/
       "id": "meditations-01",
       "type": "quote",
       "text": "본문 (번역문)",
-      "note": "2~3줄 해설 (type이 quote일 때)"
+      "note": "2~3줄 해설 (type이 quote일 때)",
+      "loc": "2권 1절",
+      "page": 25
     }
   ],
   "commentary": {
@@ -144,6 +147,7 @@ book-scroll/
 - `tab`: `literature` · `self-help` · `philosophy` · `society` · `science`
 - `unit`: `bundle`(짧은 묶음) 또는 `chapter`(챕터). 형식과 범위는 시험 제작 뒤에 정한다.
 - `lang`: 다국어 확장을 위해 처음부터 둔다.
+- `loc`: 원문 위치(필수). 판본과 상관없는 위치(권·절, 장 등). `page`: 쪽수(선택), `source.publisher`가 있을 때만. 규칙은 `docs/card-guide.md` §4-1.
 
 책 목록 `content/index.json`:
 

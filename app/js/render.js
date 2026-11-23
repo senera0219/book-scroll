@@ -25,11 +25,20 @@ function foot(page, total, showHint) {
       el('span', { class: 'hint-mouse', text: '오른쪽을 누르면 다음 장 →' })) : null);
 }
 
+// 원문 위치: 판본과 상관없는 위치(예: 2권 1절) + 출판사가 확실한 판본이면 쪽수.
+function locText(book, card) {
+  if (!card.loc) return '';
+  const page = card.page && book.source.publisher ? ` · ${book.source.publisher} ${card.page}쪽` : '';
+  return `— ${card.loc}${page}`;
+}
+
 function cardView(book, card, page, total, showHint) {
+  const loc = locText(book, card);
   return el('article', { class: 'card', 'data-type': card.type, 'data-card-id': card.id },
     head(book),
     el('div', { class: 'card-body' },
       el('p', { class: 'card-text', text: card.text }),
+      loc ? el('p', { class: 'card-loc', text: loc }) : null,
       card.note ? el('p', { class: 'card-note', text: card.note }) : null),
     foot(page, total, showHint));
 }
