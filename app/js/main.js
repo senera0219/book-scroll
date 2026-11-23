@@ -4,6 +4,7 @@ import { orderBooks } from './feed.js';
 import { bookView, tabsView, messageView } from './render.js';
 import * as storage from './storage.js';
 import { setupControls } from './controls.js';
+import { setupTextSize } from './textsize.js';
 
 const tabsEl = document.getElementById('tabs');
 const feedEl = document.getElementById('feed');
@@ -41,6 +42,7 @@ async function start() {
 }
 
 setupControls(feedEl);
+setupTextSize();
 start();
 
 if ('serviceWorker' in navigator) {

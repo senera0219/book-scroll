@@ -38,14 +38,6 @@ export function setupControls(feedEl) {
     if (row) turnPage(row, side(row, e.clientX));
   });
 
-  // 마우스 위치에 따라 커서 모양으로 넘길 방향을 알려 준다.
-  feedEl.addEventListener('mousemove', (e) => {
-    const row = e.target.closest('.cards');
-    if (!row) return;
-    const over = e.target.closest('a, button');
-    row.dataset.side = over ? '' : (side(row, e.clientX) > 0 ? 'next' : 'prev');
-  });
-
   document.addEventListener('keydown', (e) => {
     if (e.altKey || e.ctrlKey || e.metaKey) return;
     if (e.target.closest && e.target.closest('input, textarea, select, [role="tab"]')) return;

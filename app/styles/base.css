@@ -10,7 +10,9 @@
   --serif: "Noto Serif KR", "Noto Serif CJK KR", "Source Han Serif K", "Nanum Myeongjo", "Batang", serif;
   --sans: system-ui, -apple-system, "Noto Sans KR", "Malgun Gothic", sans-serif;
 
-  --text-size: 1.25rem;
+  --text-base: 1.25rem;
+  --text-scale: 1; /* 글자 크기 버튼이 바꾼다 */
+  --text-size: calc(var(--text-base) * var(--text-scale));
   --topbar-h: 3rem;
   color-scheme: light dark;
 }

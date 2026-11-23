@@ -9,9 +9,13 @@
   padding-top: env(safe-area-inset-top);
   background: var(--bar);
   border-bottom: 1px solid var(--rule);
+  display: flex;
+  align-items: center;
 }
 
 .tabs {
+  flex: 1;
+  min-width: 0;
   display: flex;
   gap: 0.25rem;
   height: var(--topbar-h);
@@ -37,6 +41,28 @@
   font-weight: 700;
   border-bottom-color: var(--accent);
 }
+
+/* ---- 글자 크기 버튼 ---- */
+.text-size {
+  flex: 0 0 auto;
+  display: flex;
+  gap: 0.25rem;
+  padding: 0 0.6rem 0 0.25rem;
+}
+.text-size button {
+  width: 2.4rem;
+  padding: 0;
+  white-space: nowrap;
+  height: 2rem;
+  border: 1px solid var(--rule);
+  border-radius: 0.4rem;
+  background: none;
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+.text-size button:disabled { opacity: 0.35; cursor: default; }
 
 /* ---- 세로 피드: 한 화면 = 책 한 권 ---- */
 .feed {
@@ -90,6 +116,7 @@
 }
 
 .card-head {
+  margin-bottom: 1.25rem;
   font-size: 0.85rem;
   color: var(--ink-soft);
   letter-spacing: 0.02em;
@@ -103,6 +130,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  justify-content: safe center; /* 글이 길어 넘치면 위가 잘리지 않게 위에서부터 */
   max-width: 34rem;
   width: 100%;
   margin: 0 auto;
@@ -123,7 +151,7 @@
   padding-top: 1.25rem;
   border-top: 1px solid var(--rule);
   font-family: var(--serif);
-  font-size: 0.95rem;
+  font-size: calc(0.95rem * var(--text-scale));
   line-height: 1.8;
   color: var(--ink-soft);
   word-break: keep-all;
@@ -153,7 +181,7 @@
 .commentary p {
   margin: 0 0 1.5rem;
   font-family: var(--serif);
-  font-size: 1rem;
+  font-size: calc(1rem * var(--text-scale));
   line-height: 1.8;
   word-break: keep-all;
 }
@@ -185,14 +213,14 @@
 @media (hover: hover) and (pointer: fine) {
   .hint-touch { display: none; }
   .hint-mouse { display: inline; }
-  .cards[data-side="next"] { cursor: e-resize; }
-  .cards[data-side="prev"] { cursor: w-resize; }
+  .cards { cursor: pointer; }
+  .cards a { cursor: pointer; }
 }
 
 /* ---- 넓은 화면(컴퓨터·태블릿): 글자·제목·작가를 크게 ---- */
 @media (min-width: 768px) {
   :root {
-    --text-size: 1.6rem;
+    --text-base: 1.6rem;
     --topbar-h: 3.75rem;
   }
   .tabs { justify-content: center; gap: 0.75rem; }
@@ -204,11 +232,12 @@
   .card-head .author { font-size: 1.15rem; }
 
   .card-body { max-width: 42rem; }
-  .card-note { font-size: 1.2rem; }
+  .card-note { font-size: calc(1.2rem * var(--text-scale)); }
   .card-foot { font-size: 1rem; max-width: 42rem; width: 100%; margin: 0 auto; }
 
   .commentary h2 { font-size: 1.15rem; }
-  .commentary p { font-size: 1.25rem; }
+  .commentary p { font-size: calc(1.25rem * var(--text-scale)); }
+  .text-size button { width: 2.6rem; height: 2.2rem; font-size: 1rem; }
   .links a { font-size: 1.1rem; padding: 1rem 0.75rem; }
   .source { font-size: 0.95rem; }
   .feed-message { font-size: 1.3rem; }
