@@ -24,7 +24,7 @@ export function setSaveButton(btn, saved) {
   btn.textContent = saved ? '★ 저장됨' : '☆ 저장';
 }
 
-function saveButton(bookId, cardId) {
+export function saveButton(bookId, cardId) {
   const btn = el('button', { class: 'save', type: 'button', 'data-book-id': bookId, 'data-card-id': cardId });
   setSaveButton(btn, isSaved(cardId));
   return btn;
@@ -94,6 +94,30 @@ export function savedView(items) {
     return el('section', { class: 'book', 'data-book-id': book.id, 'aria-label': book.title },
       el('div', { class: 'cards' }, view));
   });
+}
+
+// 저장함 목록 보기: 제목·저자·위치만 한 줄, 누르면 그 자리에서 내용이 펼쳐진다.
+export function savedListView(items) {
+  const rows = items.map(({ book, card }) => {
+    const where = card ? (card.loc || '') : '해설';
+    const body = card
+      ? el('div', { class: 'saved-body' },
+        el('p', { class: 'card-text', text: card.text }),
+        card.note ? el('p', { class: 'card-note', text: card.note }) : null,
+        saveButton(book.id, card.id))
+      : el('div', { class: 'saved-body' },
+        el('p', { class: 'commentary-text', text: book.commentary.about }),
+        el('p', { class: 'commentary-text', text: book.commentary.today }),
+        saveButton(book.id, `${book.id}-commentary`));
+    return el('details', { class: 'saved-item' },
+      el('summary', {},
+        el('span', { class: 'title', text: `『${book.title}』` }),
+        el('span', { class: 'author', text: book.author }),
+        where ? el('span', { class: 'where', text: where }) : null),
+      body);
+  });
+  return el('div', { class: 'saved-list' },
+    el('h2', { text: `저장한 카드 ${items.length}장` }), ...rows);
 }
 
 export function tabsView(tabs, current, onSelect) {

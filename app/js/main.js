@@ -1,11 +1,12 @@
 // 시작점: 데이터 불러오기 → 탭과 피드 그리기 → 서비스 워커 등록.
 import { TABS, loadBooks } from './content.js';
 import { orderBooks } from './feed.js';
-import { bookView, savedView, tabsView, messageView, setSaveButton } from './render.js';
+import { bookView, savedView, savedListView, tabsView, messageView, setSaveButton } from './render.js';
 import { toggle, savedItems } from './bookmarks.js';
 import * as storage from './storage.js';
 import { setupControls } from './controls.js';
 import { setupTextSize } from './textsize.js';
+import { setupSettings, savedViewMode } from './settings.js';
 
 const tabsEl = document.getElementById('tabs');
 const feedEl = document.getElementById('feed');
@@ -20,11 +21,15 @@ if (!ALL_TABS.some((t) => t.id === currentTab)) currentTab = 'all';
 
 function render() {
   tabsEl.replaceChildren(...tabsView(ALL_TABS, currentTab, selectTab));
+  const listMode = currentTab === 'saved' && savedViewMode() === 'list';
+  feedEl.classList.toggle('list-mode', listMode);
   if (currentTab === 'saved') {
     const items = savedItems(books);
-    feedEl.replaceChildren(...(items.length
-      ? savedView(items)
-      : [messageView('아직 저장한 카드가 없어요. 카드 아래 ☆ 저장을 눌러 보세요.')]));
+    if (items.length === 0) {
+      feedEl.replaceChildren(messageView('아직 저장한 카드가 없어요. 카드 아래 ☆ 저장을 눌러 보세요.'));
+    } else {
+      feedEl.replaceChildren(...(listMode ? [savedListView(items)] : savedView(items)));
+    }
   } else {
     const list = orderBooks(books, currentTab);
     if (list.length === 0) {
@@ -64,6 +69,8 @@ async function start() {
 
 setupControls(feedEl);
 setupTextSize();
+// 설정이 바뀌면 저장함을 보고 있을 때만 다시 그린다.
+setupSettings(() => { if (currentTab === 'saved') render(); });
 start();
 
 if ('serviceWorker' in navigator) {

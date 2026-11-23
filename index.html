@@ -16,11 +16,29 @@
 <body>
   <header class="topbar">
     <nav class="tabs" id="tabs" aria-label="주제"></nav>
-    <div class="text-size" role="group" aria-label="글자 크기">
+    <div class="text-size" role="group" aria-label="글자 크기와 설정">
       <button type="button" id="text-smaller" aria-label="글자 작게">가−</button>
       <button type="button" id="text-bigger" aria-label="글자 크게">가+</button>
+      <button type="button" id="open-settings" aria-label="설정" aria-haspopup="dialog">⚙&#xFE0E;</button>
     </div>
   </header>
+  <dialog class="settings" id="settings" aria-labelledby="settings-title">
+    <form method="dialog">
+      <h2 id="settings-title">설정</h2>
+      <fieldset>
+        <legend>저장함 보기 방식</legend>
+        <label class="option">
+          <input type="radio" name="savedView" value="list">
+          <span><strong>목록으로 보기</strong><br>책 제목과 저자만 먼저 보이고, 누르면 내용이 펼쳐져요.</span>
+        </label>
+        <label class="option">
+          <input type="radio" name="savedView" value="cards">
+          <span><strong>카드 그대로 보기</strong><br>저장한 카드를 화면 그대로 한 장씩 넘겨 봐요.</span>
+        </label>
+      </fieldset>
+      <button type="submit" class="close">닫기</button>
+    </form>
+  </dialog>
   <main class="feed" id="feed" aria-live="polite">
     <p class="feed-message">불러오는 중…</p>
   </main>
