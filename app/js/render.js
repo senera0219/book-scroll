@@ -14,13 +14,15 @@ function el(tag, attrs = {}, ...children) {
 function head(book) {
   return el('div', { class: 'card-head' },
     el('span', { class: 'title', text: `『${book.title}』` }),
-    el('span', { text: ` ${book.author}` }));
+    el('span', { class: 'author', text: book.author }));
 }
 
 function foot(page, total, showHint) {
   return el('div', { class: 'card-foot' },
     el('span', { text: `${page} / ${total}` }),
-    showHint ? el('span', { class: 'hint', text: '옆으로 넘기기 →' }) : null);
+    showHint ? el('span', { class: 'hint' },
+      el('span', { class: 'hint-touch', text: '옆으로 넘기기 →' }),
+      el('span', { class: 'hint-mouse', text: '오른쪽을 누르면 다음 장 →' })) : null);
 }
 
 function cardView(book, card, page, total, showHint) {

@@ -3,6 +3,7 @@ import { TABS, loadBooks } from './content.js';
 import { orderBooks } from './feed.js';
 import { bookView, tabsView, messageView } from './render.js';
 import * as storage from './storage.js';
+import { setupControls } from './controls.js';
 
 const tabsEl = document.getElementById('tabs');
 const feedEl = document.getElementById('feed');
@@ -39,6 +40,7 @@ async function start() {
   render();
 }
 
+setupControls(feedEl);
 start();
 
 if ('serviceWorker' in navigator) {
