@@ -311,8 +311,13 @@
   gap: 0.75rem;
   margin: 0.5rem 0 1.5rem;
 }
-.links a {
+.links-wrap { margin: 0.5rem 0 1.5rem; }
+.links-wrap .links { margin: 0; }
+.links a, .store-toggle {
   flex: 1;
+  font: inherit;
+  background: none;
+  cursor: pointer;
   text-align: center;
   padding: 0.8rem 0.5rem;
   border: 1px solid var(--rule);
@@ -321,6 +326,25 @@
   color: var(--ink);
   font-weight: 600;
 }
+.store-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.6rem;
+}
+.store-list[hidden] { display: none; }
+.store-list a {
+  flex: 1 0 auto;
+  text-align: center;
+  white-space: nowrap;
+  padding: 0.45rem 0.7rem;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  text-decoration: none;
+  color: var(--ink);
+  font-size: 0.95rem;
+}
+.store-list small { color: var(--ink-soft); font-size: 0.75em; }
 .source {
   font-size: 0.78rem;
   color: var(--ink-soft);
@@ -363,7 +387,8 @@
   .saved-row .author { font-size: 1.1rem; }
   .saved-row .where { font-size: 1rem; }
   .back { font-size: 1rem; left: 1.25rem; }
-  .links a { font-size: 1.1rem; padding: 1rem 0.75rem; }
+  .links a, .store-toggle { font-size: 1.1rem; padding: 1rem 0.75rem; }
+  .store-list a { font-size: 1.05rem; padding: 0.6rem 0.9rem; }
   .source { font-size: 0.95rem; }
   .feed-message { font-size: 1.3rem; }
 }

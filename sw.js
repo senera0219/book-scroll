@@ -1,7 +1,7 @@
 // 서비스 워커: 앱 화면과 카드를 휴대폰에 저장해 오프라인에서도 열리게 한다.
 // 저장본 목록(SHELL)을 바꾸면 VERSION을 올린다(새 버전이 옛 저장본을 지운다).
 
-const VERSION = 'v9';
+const VERSION = 'v10';
 const CACHE = `book-scroll-${VERSION}`;
 
 const SHELL = [
@@ -19,6 +19,7 @@ const SHELL = [
   'app/js/textsize.js',
   'app/js/bookmarks.js',
   'app/js/settings.js',
+  'app/js/stores.js',
   'assets/icons/icon-192.png',
   'assets/icons/icon-512.png',
 ];

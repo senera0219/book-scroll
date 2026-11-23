@@ -29,7 +29,7 @@ function goodBook() {
       about: '이 책은.',
       today: '지금은.',
       related: [],
-      links: { buy: 'https://example.com/buy', library: 'https://example.com/lib' },
+      links: { library: 'https://example.com/lib' },
     },
     dailyQuote: '아침 일찍 스스로에게 말하라.',
     review: { generatedBy: 'claude', reviewedBy: 'chatgpt', date: '2026-11-12' },

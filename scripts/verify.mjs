@@ -182,9 +182,8 @@ function checkBook(root, book, rel, fileId, listed, bookIds, allCardIds, err, wa
     }
     if (!cm.links || typeof cm.links !== 'object') err(rel, 'commentary.links 없음');
     else {
-      for (const k of ['buy', 'library']) {
-        if (!isHttps(cm.links[k])) err(rel, `commentary.links.${k}는 https:// 주소여야 함`);
-      }
+      if (!isHttps(cm.links.library)) err(rel, 'commentary.links.library는 https:// 주소여야 함');
+      if (cm.links.storeQuery !== undefined && !isStr(cm.links.storeQuery)) err(rel, 'commentary.links.storeQuery는 글자여야 함(서점 검색어, 없으면 책 제목)');
     }
   }
 

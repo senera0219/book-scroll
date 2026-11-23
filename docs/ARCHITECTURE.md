@@ -136,7 +136,7 @@ book-scroll/
     "about": "이 책은 어떤 책인가",
     "today": "그리고 지금은 (오늘과의 연결)",
     "related": ["seneca-shortness-of-life"],
-    "links": { "buy": "구매 검색 링크", "library": "도서관 검색 링크" }
+    "links": { "library": "도서관 검색 링크", "storeQuery": "서점 검색어(선택, 없으면 title)" }
   },
   "dailyQuote": "알림에 쓸 한 줄",
   "review": { "generatedBy": "claude", "reviewedBy": "chatgpt", "date": "2026-11-12" }
@@ -147,6 +147,7 @@ book-scroll/
 - `tab`: `literature` · `self-help` · `philosophy` · `society` · `science`
 - `unit`: `bundle`(짧은 묶음) 또는 `chapter`(챕터). 형식과 범위는 시험 제작 뒤에 정한다.
 - `lang`: 다국어 확장을 위해 처음부터 둔다.
+- 서점 링크는 데이터에 넣지 않는다. 앱이 `storeQuery`(없으면 `title`)로 알라딘·예스24·교보문고·밀리의 서재·리디 검색 주소를 만든다(`app/js/stores.js`).
 - `loc`: 원문 위치(필수). 판본과 상관없는 위치(권·절, 장 등). `page`: 쪽수(선택), `source.publisher`가 있을 때만. 규칙은 `docs/card-guide.md` §4-1.
 
 책 목록 `content/index.json`:

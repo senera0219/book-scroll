@@ -1,6 +1,7 @@
 // 화면 그리기: 책 한 권 = 세로 한 칸, 그 안에 가로 카드들 + 마지막 해설 카드.
 // 내용은 모두 textContent로 넣는다(카드 글이 HTML로 해석되지 않게).
 import { isSaved } from './bookmarks.js';
+import { storeLinks } from './stores.js';
 
 function el(tag, attrs = {}, ...children) {
   const node = document.createElement(tag);
@@ -57,6 +58,26 @@ function cardView(book, card, pageLabel, showHint) {
     foot(book, card.id, pageLabel, showHint));
 }
 
+// 서점에서 찾기: 누르면 아래에 서점 목록이 펼쳐진다.
+function storesBlock(book, link, libraryUrl) {
+  const list = el('div', { class: 'store-list', hidden: '' },
+    ...storeLinks(book).map((s) => {
+      const a = link(s.url, s.name);
+      if (s.note) a.append(el('small', { text: ` (${s.note})` }));
+      return a;
+    }));
+  const toggle = el('button', { type: 'button', class: 'store-toggle', 'aria-expanded': 'false', text: '서점에서 찾기 ▾' });
+  toggle.addEventListener('click', () => {
+    const open = list.hidden;
+    list.hidden = !open;
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.textContent = open ? '서점에서 찾기 ▴' : '서점에서 찾기 ▾';
+  });
+  return el('div', { class: 'links-wrap' },
+    el('div', { class: 'links' }, toggle, link(libraryUrl, '도서관에서 찾기')),
+    list);
+}
+
 function commentaryView(book, pageLabel) {
   const c = book.commentary;
   const link = (href, label) => el('a', { href, target: '_blank', rel: 'noopener', text: label });
@@ -67,9 +88,7 @@ function commentaryView(book, pageLabel) {
       el('p', { text: c.about }),
       el('h2', { text: '그리고 지금은' }),
       el('p', { text: c.today }),
-      el('div', { class: 'links' },
-        link(c.links.buy, '서점에서 찾기'),
-        link(c.links.library, '도서관에서 찾기')),
+      storesBlock(book, link, c.links.library),
       el('p', { class: 'source' },
         document.createTextNode(`원문: ${book.source.edition} · `),
         link(book.source.url, '출처'))),
