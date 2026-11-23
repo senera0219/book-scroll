@@ -1,5 +1,6 @@
 // 화면 그리기: 책 한 권 = 세로 한 칸, 그 안에 가로 카드들 + 마지막 해설 카드.
 // 내용은 모두 textContent로 넣는다(카드 글이 HTML로 해석되지 않게).
+import { isSaved } from './bookmarks.js';
 
 function el(tag, attrs = {}, ...children) {
   const node = document.createElement(tag);
@@ -17,12 +18,25 @@ function head(book) {
     el('span', { class: 'author', text: book.author }));
 }
 
-function foot(page, total, showHint) {
+export function setSaveButton(btn, saved) {
+  btn.setAttribute('aria-pressed', String(saved));
+  btn.setAttribute('aria-label', saved ? '저장 취소' : '이 카드 저장');
+  btn.textContent = saved ? '★ 저장됨' : '☆ 저장';
+}
+
+function saveButton(bookId, cardId) {
+  const btn = el('button', { class: 'save', type: 'button', 'data-book-id': bookId, 'data-card-id': cardId });
+  setSaveButton(btn, isSaved(cardId));
+  return btn;
+}
+
+function foot(book, cardId, pageLabel, showHint) {
   return el('div', { class: 'card-foot' },
-    el('span', { text: `${page} / ${total}` }),
+    el('span', { class: 'page', text: pageLabel }),
     showHint ? el('span', { class: 'hint' },
       el('span', { class: 'hint-touch', text: '옆으로 넘기기 →' }),
-      el('span', { class: 'hint-mouse', text: '오른쪽을 누르면 다음 장 →' })) : null);
+      el('span', { class: 'hint-mouse', text: '오른쪽을 누르면 다음 장 →' })) : null,
+    saveButton(book.id, cardId));
 }
 
 // 원문 위치: 판본과 상관없는 위치(예: 2권 1절) + 출판사가 확실한 판본이면 쪽수.
@@ -32,7 +46,7 @@ function locText(book, card) {
   return `— ${card.loc}${page}`;
 }
 
-function cardView(book, card, page, total, showHint) {
+function cardView(book, card, pageLabel, showHint) {
   const loc = locText(book, card);
   return el('article', { class: 'card', 'data-type': card.type, 'data-card-id': card.id },
     head(book),
@@ -40,10 +54,10 @@ function cardView(book, card, page, total, showHint) {
       el('p', { class: 'card-text', text: card.text }),
       loc ? el('p', { class: 'card-loc', text: loc }) : null,
       card.note ? el('p', { class: 'card-note', text: card.note }) : null),
-    foot(page, total, showHint));
+    foot(book, card.id, pageLabel, showHint));
 }
 
-function commentaryView(book, page, total) {
+function commentaryView(book, pageLabel) {
   const c = book.commentary;
   const link = (href, label) => el('a', { href, target: '_blank', rel: 'noopener', text: label });
   return el('article', { class: 'card commentary', 'data-type': 'commentary' },
@@ -59,17 +73,27 @@ function commentaryView(book, page, total) {
       el('p', { class: 'source' },
         document.createTextNode(`원문: ${book.source.edition} · `),
         link(book.source.url, '출처'))),
-    foot(page, total, false));
+    foot(book, `${book.id}-commentary`, pageLabel, false));
 }
 
 export function bookView(book, isFirst) {
   const total = book.cards.length + 1;
   const row = el('div', { class: 'cards' });
   book.cards.forEach((card, i) => {
-    row.append(cardView(book, card, i + 1, total, isFirst && i === 0));
+    row.append(cardView(book, card, `${i + 1} / ${total}`, isFirst && i === 0));
   });
-  row.append(commentaryView(book, total, total));
+  row.append(commentaryView(book, `${total} / ${total}`));
   return el('section', { class: 'book', 'data-book-id': book.id, 'aria-label': book.title }, row);
+}
+
+// 저장함: 저장한 카드 한 장 = 세로 한 칸. 위아래로 넘겨 본다.
+export function savedView(items) {
+  return items.map(({ book, card }, i) => {
+    const label = `저장함 ${i + 1} / ${items.length}`;
+    const view = card ? cardView(book, card, label, false) : commentaryView(book, label);
+    return el('section', { class: 'book', 'data-book-id': book.id, 'aria-label': book.title },
+      el('div', { class: 'cards' }, view));
+  });
 }
 
 export function tabsView(tabs, current, onSelect) {
