@@ -168,11 +168,12 @@ book-scroll/
   "settings": { "fontSize": "medium", "theme": "paper", "notifyAt": "23:00" },
   "tab": "all",
   "textScale": 1.15,
+  "savedView": "list",
   "saved": [{ "book": "meditations", "card": "meditations-03", "at": "2026-11-23" }]
 }
 ```
 
-- `saved`: 저장한 카드(최신이 앞). 해설 카드는 `"<책id>-commentary"`. 저장함 탭이 이 순서로 보여 준다(`app/js/bookmarks.js`).
+- `saved`: 저장한 카드(최신이 앞). 해설 카드는 `"<책id>-commentary"`. 저장함 탭이 이 순서로 보여 준다(`app/js/bookmarks.js`). `savedView`: 저장함 보기 방식 `list`(제목·저자 목록, 누르면 펼침, 기본) / `cards`(카드 그대로). ⚙ 설정 창에서 고른다(`app/js/settings.js`).
 - 모든 읽기와 쓰기는 `storage.js`를 거친다. 다른 파일은 localStorage를 직접 만지지 않는다.
 - 브라우저 데이터를 지우면 사라진다(0단계에서 감수). 백업용 "기록 내보내기" 버튼은 1단계 후보.
 
