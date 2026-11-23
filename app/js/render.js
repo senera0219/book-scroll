@@ -96,28 +96,30 @@ export function savedView(items) {
   });
 }
 
-// 저장함 목록 보기: 제목·저자·위치만 한 줄, 누르면 그 자리에서 내용이 펼쳐진다.
-export function savedListView(items) {
-  const rows = items.map(({ book, card }) => {
-    const where = card ? (card.loc || '') : '해설';
-    const body = card
-      ? el('div', { class: 'saved-body' },
-        el('p', { class: 'card-text', text: card.text }),
-        card.note ? el('p', { class: 'card-note', text: card.note }) : null,
-        saveButton(book.id, card.id))
-      : el('div', { class: 'saved-body' },
-        el('p', { class: 'commentary-text', text: book.commentary.about }),
-        el('p', { class: 'commentary-text', text: book.commentary.today }),
-        saveButton(book.id, `${book.id}-commentary`));
-    return el('details', { class: 'saved-item' },
-      el('summary', {},
-        el('span', { class: 'title', text: `『${book.title}』` }),
-        el('span', { class: 'author', text: book.author }),
-        where ? el('span', { class: 'where', text: where }) : null),
-      body);
+// 저장함 목록 보기: 책마다 한 줄(제목·저자·저장한 위치). 누르면 그 책을 카드 화면으로 연다.
+export function savedListView(items, onOpen) {
+  const groups = new Map(); // 최근에 저장한 책이 위로
+  for (const { book, card } of items) {
+    if (!groups.has(book.id)) groups.set(book.id, { book, places: [] });
+    groups.get(book.id).places.push(card ? (card.loc || '구절') : '해설');
+  }
+  const rows = [...groups.values()].map(({ book, places }) => {
+    const row = el('button', { class: 'saved-row', type: 'button', 'data-book-id': book.id },
+      el('span', { class: 'title', text: `『${book.title}』` }),
+      el('span', { class: 'author', text: book.author }),
+      el('span', { class: 'where', text: `저장 ${places.length}곳 · ${places.join(', ')}` }));
+    row.addEventListener('click', () => onOpen(book.id));
+    return row;
   });
   return el('div', { class: 'saved-list' },
-    el('h2', { text: `저장한 카드 ${items.length}장` }), ...rows);
+    el('h2', { text: `저장한 책 ${groups.size}권` }), ...rows);
+}
+
+// 목록에서 연 책: 평소 카드 화면 + 왼쪽 위 '저장함 목록' 버튼.
+export function openedBookView(book, onBack) {
+  const back = el('button', { class: 'back', type: 'button', text: '← 저장함 목록' });
+  back.addEventListener('click', onBack);
+  return [bookView(book, false), back];
 }
 
 export function tabsView(tabs, current, onSelect) {

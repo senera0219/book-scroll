@@ -112,29 +112,35 @@
            calc(3rem + env(safe-area-inset-bottom));
 }
 .saved-list > h2 { margin: 0 0 0.75rem; font-size: 0.95rem; color: var(--ink-soft); font-weight: 400; }
-.saved-item { border-bottom: 1px solid var(--rule); }
-.saved-item > summary {
+.saved-row {
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
   gap: 0.2rem 0.6rem;
+  width: 100%;
   padding: 1rem 0.25rem;
-  list-style: none;
+  border: 0;
+  border-bottom: 1px solid var(--rule);
+  background: none;
+  text-align: left;
+  cursor: pointer;
 }
-.saved-item > summary::-webkit-details-marker { display: none; }
-.saved-item > summary::before {
-  content: "▸";
-  color: var(--ink-soft);
-  transition: transform 0.15s;
+.saved-row .title { font-family: var(--serif); font-weight: 700; font-size: 1.1rem; }
+.saved-row .author { color: var(--ink-soft); font-size: 0.95rem; }
+.saved-row .where { flex-basis: 100%; color: var(--ink-soft); font-size: 0.85rem; font-family: var(--serif); }
+.back {
+  position: fixed;
+  z-index: 5;
+  top: calc(var(--topbar-h) + env(safe-area-inset-top) + 0.6rem);
+  left: 0.75rem;
+  padding: 0.4rem 0.8rem;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  background: var(--bar);
+  color: var(--ink);
+  font-size: 0.85rem;
+  cursor: pointer;
 }
-.saved-item[open] > summary::before { transform: rotate(90deg); }
-.saved-item .title { font-family: var(--serif); font-weight: 700; font-size: 1.1rem; }
-.saved-item .author { color: var(--ink-soft); font-size: 0.95rem; }
-.saved-item .where { margin-left: auto; color: var(--ink-soft); font-size: 0.85rem; font-family: var(--serif); }
-.saved-body { padding: 0 0.25rem 1.25rem 1.4rem; }
-.saved-body .card-text { font-size: calc(var(--text-size) * 0.9); }
-.saved-body .commentary-text { font-family: var(--serif); line-height: 1.8; font-size: calc(1rem * var(--text-scale)); margin: 0 0 0.75rem; word-break: keep-all; }
-.saved-body .save { margin-top: 1rem; margin-left: 0; }
 
 /* ---- 세로 피드: 한 화면 = 책 한 권 ---- */
 .feed {
@@ -338,10 +344,14 @@
   .commentary h2 { font-size: 1.15rem; }
   .commentary p { font-size: calc(1.25rem * var(--text-scale)); }
   .text-size button { width: 2.6rem; height: 2.2rem; font-size: 1rem; }
-  .saved-item .title { font-size: 1.35rem; }
-  .saved-item .author { font-size: 1.1rem; }
-  .saved-item .where { font-size: 1rem; }
+  .saved-row .title { font-size: 1.35rem; }
+  .saved-row .author { font-size: 1.1rem; }
+  .saved-row .where { font-size: 1rem; }
+  .back { font-size: 1rem; left: 1.25rem; }
   .links a { font-size: 1.1rem; padding: 1rem 0.75rem; }
   .source { font-size: 0.95rem; }
   .feed-message { font-size: 1.3rem; }
 }
+
+/* 저장함에서 연 책: 위쪽 "저장함 목록" 버튼 자리만큼 내린다 */
+.feed:has(.back) .card { padding-top: calc(var(--topbar-h) + env(safe-area-inset-top) + 3.75rem); }
