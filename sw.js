@@ -1,7 +1,7 @@
 // 서비스 워커: 앱 화면과 카드를 휴대폰에 저장해 오프라인에서도 열리게 한다.
-// 화면 파일을 바꾸면 VERSION을 올린다(새 버전이 옛 저장본을 지운다).
+// 저장본 목록(SHELL)을 바꾸면 VERSION을 올린다(새 버전이 옛 저장본을 지운다).
 
-const VERSION = 'v4';
+const VERSION = 'v5';
 const CACHE = `book-scroll-${VERSION}`;
 
 const SHELL = [
@@ -33,25 +33,22 @@ self.addEventListener('activate', (event) => {
   );
 });
 
-// 같은 사이트 파일: 저장본을 바로 보여 주고, 뒤에서 새로 받아 저장본을 갱신한다.
+// 같은 사이트 파일: 인터넷이 되면 항상 새 파일을 받아 보여 주고 저장본도 바꾼다.
+// 인터넷이 안 되면 저장본을 보여 준다. (고친 화면이 바로 보이게 하려고 새 파일 우선)
 self.addEventListener('fetch', (event) => {
   const req = event.request;
   if (req.method !== 'GET' || new URL(req.url).origin !== self.location.origin) return;
 
   event.respondWith(
     caches.open(CACHE).then(async (cache) => {
-      const cached = await cache.match(req, { ignoreSearch: true });
-      const fresh = fetch(req)
-        .then((res) => {
-          if (res.ok) cache.put(req, res.clone());
-          return res;
-        })
-        .catch(() => cached);
-      if (cached) {
-        event.waitUntil(fresh);
-        return cached;
+      try {
+        const res = await fetch(req, { cache: 'no-cache' });
+        if (res.ok) cache.put(req, res.clone());
+        return res;
+      } catch {
+        const cached = await cache.match(req, { ignoreSearch: true });
+        return cached || Response.error();
       }
-      return fresh;
     }),
   );
 });
