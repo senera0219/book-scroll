@@ -1,7 +1,7 @@
 // 서비스 워커: 앱 화면과 카드를 휴대폰에 저장해 오프라인에서도 열리게 한다.
 // 화면 파일을 바꾸면 VERSION을 올린다(새 버전이 옛 저장본을 지운다).
 
-const VERSION = 'v3';
+const VERSION = 'v4';
 const CACHE = `book-scroll-${VERSION}`;
 
 const SHELL = [
