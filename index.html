@@ -16,15 +16,21 @@
 <body>
   <header class="topbar">
     <nav class="tabs" id="tabs" aria-label="주제"></nav>
-    <div class="text-size" role="group" aria-label="글자 크기와 설정">
-      <button type="button" id="text-smaller" aria-label="글자 작게">가−</button>
-      <button type="button" id="text-bigger" aria-label="글자 크게">가+</button>
+    <div class="text-size">
       <button type="button" id="open-settings" aria-label="설정" aria-haspopup="dialog">⚙&#xFE0E;</button>
     </div>
   </header>
   <dialog class="settings" id="settings" aria-labelledby="settings-title">
     <form method="dialog">
       <h2 id="settings-title">설정</h2>
+      <fieldset>
+        <legend>글자 크기</legend>
+        <div class="size-row">
+          <button type="button" id="text-smaller" aria-label="글자 작게">가−</button>
+          <span class="size-sample" id="text-size-label" aria-live="polite">보통</span>
+          <button type="button" id="text-bigger" aria-label="글자 크게">가+</button>
+        </div>
+      </fieldset>
       <fieldset>
         <legend>저장함 보기 방식</legend>
         <label class="option">
